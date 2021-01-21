@@ -1,5 +1,5 @@
-test-demo/target
-test-demo/target/surefire-reports/**
+target
+target/surefire-reports/**
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -14,4 +14,5 @@ buildNumber.properties
 .project
 .classpath
 .vscode
+.gradle/**
 org.eclipse*
