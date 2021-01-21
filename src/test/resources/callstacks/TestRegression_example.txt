@@ -1,0 +1,5 @@
+   testJob.execute()
+      testJob.node(groovy.lang.Closure)
+         testJob.stage(test, groovy.lang.Closure)
+            testJob.sh(echo 'Hello world!')
+            testJob.echo(Hello!)

@@ -1,0 +1,26 @@
+// Jenkinsfile for testing
+
+pipeline {
+    agent none
+    stages {
+        stage('Example Build') {
+            agent { label 'maven' }
+            steps {
+                echo 'Hello, Maven'
+                sh 'mvn --version'
+            }
+        }
+        stage('Example Test') {
+            agent { label 'maven' }
+            steps {
+                echo 'Hello, JDK'
+                def result = sh( returnStdout: true, script: 'java -version' )
+                if (result == 'example') {
+                    echo "JDK OK"
+                } else {
+                    error "Wrong JDK version: " + result
+                }
+            }
+        }
+    }
+}
