@@ -1,3 +1,5 @@
+// @Library('buildTools') _
+
 node {
     stage('Use SharedLib function') {
         def result = buildTools.parseGitURL("https://git.example.com/bitbucket/scm/project-test/test-repo.git")
