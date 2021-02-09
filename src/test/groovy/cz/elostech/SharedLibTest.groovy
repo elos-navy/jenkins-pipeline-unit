@@ -13,26 +13,29 @@ class SharedLibTest extends BasePipelineTest {
     @Override
     @Before
     void setUp() throws Exception {
+        //baseScriptRoot = 'jenkins-pipeline-unit'
+        scriptRoots += 'src/main/groovy'
+        scriptRoots += 'vars'
+        super.setUp()
 
         def library = library().name('buildTools')
                         .defaultVersion("<notNeeded>")
                         .allowOverride(true)
                         .implicit(true)
                         .targetPath('<notNeeded>')
-                        .retriever(projectSource("src/main/groovy"))
+                        .retriever(projectSource())
                         .build()
         helper.registerSharedLibrary(library)
-
-        scriptRoots += 'src/main/groovy'
-        super.setUp()
+        println("Lib loaded: " + library)
     }
 
     @Test
     void test_local_sharedlib() throws Exception {
         
         runScript("src/main/groovy/testLib.groovy")
-        
+        // def script = loadScript("src/main/groovy/testLib.groovy")
         // script.execute()
+        
         printCallStack()
         assertJobStatusSuccess()
     }

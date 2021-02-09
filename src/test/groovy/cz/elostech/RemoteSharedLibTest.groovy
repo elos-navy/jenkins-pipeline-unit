@@ -24,7 +24,7 @@ class RemoteSharedLibTest extends BasePipelineTest {
                         .implicit(true)
                         .build()
         helper.registerSharedLibrary(library)
-        library.toString()
+
         super.setUp()
     }
 
