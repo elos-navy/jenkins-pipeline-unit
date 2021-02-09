@@ -30,6 +30,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>3.0.5</version>
@@ -51,6 +56,12 @@
             <groupId>org.jenkins-ci.main</groupId>
             <artifactId>jenkins-test-harness</artifactId>
             <version>2.15</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci.main</groupId>
+            <artifactId>jenkins-core</artifactId>
+            <version>2.204.2</version>
+            <scope>provided</scope>
         </dependency>
         <!-- <dependency>
             <groupId>org.jenkins-ci.main</groupId>
@@ -84,6 +95,11 @@
             <version>2.1.10</version>
         </dependency>
         <dependency>
+            <groupId>org.jvnet.hudson.main</groupId>
+            <artifactId>hudson-core</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.tomjankes</groupId>
             <artifactId>wiremock-groovy</artifactId>
             <version>0.2.0</version>
@@ -93,6 +109,23 @@
             <artifactId>wiremock</artifactId>
             <version>2.27.2</version>
             <!-- <type>pom</type> -->
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>2.0-M2-groovy-3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-junit4</artifactId>
+            <version>2.0-M4-groovy-3.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -105,7 +138,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <includes>
+                        <include>**/*Spec.java</include>
+                        <!-- <include>**/*Test.java</include>
+                        <include>**/Test*.java</include> -->
+                    </includes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
@@ -139,6 +180,7 @@
                             <directory>${project.basedir}/src/test/groovy</directory>
                             <includes>
                                 <include>**/*.groovy</include>
+                                <include>**/*Spec.groovy</include>
                             </includes>
                         </testSource>
                     </testSources>
